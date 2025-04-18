@@ -12,6 +12,7 @@ export function useMemes() {
         return stored ? JSON.parse(stored) : initialMemes;
     });
     const [selectedMeme, setSelectedMeme] = useState<Memes | null>(null);
+    const [nameError, setNameError] = useState<string>('');
 
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(memes));
@@ -29,6 +30,23 @@ export function useMemes() {
         }
         onClose();
     };
+    const validationName = (value: string) => {
+        if (value.length < 3) {
+            setNameError('Name must be at least 3 characters.');
+        } else if (value.length > 100) {
+            setNameError('Name must be less than or equal to 100 characters.');
+        } else {
+            setNameError('');
+        }
+    };
 
-    return { memes, handleEdit, handleSave, selectedMeme, setSelectedMeme };
+    return {
+        memes,
+        handleEdit,
+        handleSave,
+        selectedMeme,
+        setSelectedMeme,
+        validationName,
+        nameError,
+    };
 }

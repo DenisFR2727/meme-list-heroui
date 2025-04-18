@@ -8,6 +8,7 @@ import {
     Button,
 } from '@heroui/react';
 import { ModalEditMemeProps } from './types/types';
+import { useMemes } from './hooks/hooks';
 
 function ModalEditMeme({
     isOpen,
@@ -16,6 +17,8 @@ function ModalEditMeme({
     setSelectedMeme,
     handleSave,
 }: ModalEditMemeProps) {
+    const { validationName, nameError } = useMemes();
+
     return (
         <Modal isOpen={isOpen} onClose={onClose} placement="top">
             <ModalContent>
@@ -24,11 +27,15 @@ function ModalEditMeme({
                     <Input
                         label="Name"
                         value={selectedMeme?.name ?? ''}
-                        onChange={(e) =>
+                        onChange={(e) => {
+                            const value = e.target.value;
                             setSelectedMeme((prev) =>
-                                prev ? { ...prev, name: e.target.value } : prev
-                            )
-                        }
+                                prev ? { ...prev, name: value } : prev
+                            );
+                            validationName(value);
+                        }}
+                        isInvalid={!!nameError}
+                        errorMessage={nameError}
                     />
                     <Input
                         label="Image URL"
@@ -63,8 +70,10 @@ function ModalEditMeme({
                     </Button>
                     <Button
                         onPress={() => {
-                            handleSave();
-                            onClose();
+                            if (!nameError && selectedMeme?.name) {
+                                handleSave();
+                                onClose();
+                            }
                         }}
                         color="primary"
                     >
