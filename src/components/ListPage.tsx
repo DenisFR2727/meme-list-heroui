@@ -14,7 +14,7 @@ export default function App() {
                         shadow="sm"
                         className="card_meme"
                     >
-                        <CardBody className="overflow-hidden p-0">
+                        <CardBody className="card_body overflow-hidden p-0">
                             <Image
                                 alt={meme.name}
                                 className="card_img w-full object-cover "
