@@ -14,8 +14,14 @@ import ModalEditMeme from './Modal';
 
 export default function TablePage() {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const { memes, handleEdit, selectedMeme, setSelectedMeme, handleSave } =
-        useMemes();
+    const {
+        memes,
+        handleEdit,
+        selectedMeme,
+        setSelectedMeme,
+        handleSave,
+        deleteMeme,
+    } = useMemes();
 
     return (
         <div>
@@ -58,6 +64,9 @@ export default function TablePage() {
                                         }}
                                     >
                                         Edit
+                                    </Button>
+                                    <Button onPress={() => deleteMeme(meme.id)}>
+                                        Delete
                                     </Button>
                                 </TableCell>
                             </TableRow>

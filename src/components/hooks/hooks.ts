@@ -22,7 +22,7 @@ export function useMemes() {
         setSelectedMeme(meme);
         onOpen();
     };
-    const handleSave = () => {
+    const handleSave = (): void => {
         if (selectedMeme) {
             setMemes((prev) =>
                 prev.map((m) => (m.id === selectedMeme.id ? selectedMeme : m))
@@ -30,7 +30,7 @@ export function useMemes() {
         }
         onClose();
     };
-    const validationName = (value: string) => {
+    const validationName = (value: string): void => {
         if (value.length < 3) {
             setNameError('Name must be at least 3 characters.');
         } else if (value.length > 100) {
@@ -39,7 +39,10 @@ export function useMemes() {
             setNameError('');
         }
     };
-
+    const deleteMeme = (IdMeme: number): void => {
+        const deleteMeme = memes.filter((meme) => meme.id !== IdMeme);
+        setMemes(deleteMeme);
+    };
     return {
         memes,
         handleEdit,
@@ -48,5 +51,6 @@ export function useMemes() {
         setSelectedMeme,
         validationName,
         nameError,
+        deleteMeme,
     };
 }
