@@ -40,10 +40,14 @@ export default function TablePage() {
                         return (
                             <TableRow key={meme.id} className="meme_hover">
                                 <TableCell>{meme.id}</TableCell>
-                                <TableCell>{`${meme.name.slice(
-                                    0,
-                                    20
-                                )} ...`}</TableCell>
+                                <TableCell
+                                    style={{
+                                        overflow: 'hidden',
+                                        textWrap: 'nowrap',
+                                    }}
+                                >{`${meme.name
+                                    .replace(/\./g, '')
+                                    .slice(0, 10)}`}</TableCell>
                                 <TableCell>
                                     {isValidImageUrl ? (
                                         <Image
