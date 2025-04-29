@@ -8,6 +8,7 @@ import {
     Image,
     Button,
     useDisclosure,
+    Link,
 } from '@heroui/react';
 import { useMemes } from './hooks/hooks';
 import ModalEditMeme from './Modal';
@@ -50,12 +51,15 @@ export default function TablePage() {
                                     .slice(0, 10)}`}</TableCell>
                                 <TableCell>
                                     {isValidImageUrl ? (
-                                        <Image
-                                            alt={meme.url}
-                                            height={50}
-                                            src={meme.url}
-                                            width={50}
-                                        />
+                                        <Link href={meme.url} target="_blank">
+                                            <Image
+                                                alt={meme.url}
+                                                height={45}
+                                                src={meme.url}
+                                                width={45}
+                                                style={{ minWidth: '45px' }}
+                                            />
+                                        </Link>
                                     ) : (
                                         <span style={{ color: 'red' }}>
                                             Invalid URL
