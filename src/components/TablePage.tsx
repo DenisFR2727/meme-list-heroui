@@ -35,12 +35,16 @@ export default function TablePage() {
                     <TableColumn>ACTIONS</TableColumn>
                 </TableHeader>
                 <TableBody>
-                    {memes.map((meme) => {
+                    {memes.map((meme, index) => {
                         const isValidImageUrl =
                             /^https?:\/\/.*\.(jpg|jpeg|png)$/i.test(meme.url);
                         return (
-                            <TableRow key={meme.id} className="meme_hover">
-                                <TableCell>{meme.id}</TableCell>
+                            <TableRow
+                                key={meme.id}
+                                className="meme_hover"
+                                style={{ height: '65px' }}
+                            >
+                                <TableCell>{index + 1}</TableCell>
                                 <TableCell
                                     style={{
                                         overflow: 'hidden',
@@ -84,6 +88,21 @@ export default function TablePage() {
                                             onPress={() => deleteMeme(meme.id)}
                                         >
                                             Delete
+                                        </Button>
+                                        <Button
+                                            size="sm"
+                                            className="add_meme_btn"
+                                            onPress={() => {
+                                                setSelectedMeme({
+                                                    id: 0,
+                                                    name: '',
+                                                    url: '',
+                                                    likes: 0,
+                                                });
+                                                onOpen();
+                                            }}
+                                        >
+                                            Add
                                         </Button>
                                     </div>
                                 </TableCell>

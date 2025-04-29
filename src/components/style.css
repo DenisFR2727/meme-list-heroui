@@ -32,6 +32,9 @@
 .del_meme_btn {
     margin-left: 10px;
 }
+.add_meme_btn {
+    margin-left: 10px;
+}
 .actions_btns {
     display: flex;
     align-items: center;

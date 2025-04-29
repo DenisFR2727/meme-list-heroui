@@ -22,8 +22,14 @@ export function useMemes() {
         setSelectedMeme(meme);
         onOpen();
     };
+    // Edit and Add Memes
     const handleSave = (): void => {
-        if (selectedMeme) {
+        if (!selectedMeme) return;
+        if (!selectedMeme.id) {
+            const newMeme = { ...selectedMeme, id: Date.now() };
+
+            setMemes((prev) => [...prev, newMeme]);
+        } else {
             setMemes((prev) =>
                 prev.map((m) => (m.id === selectedMeme.id ? selectedMeme : m))
             );
@@ -43,6 +49,7 @@ export function useMemes() {
         const deleteMeme = memes.filter((meme) => meme.id !== IdMeme);
         setMemes(deleteMeme);
     };
+
     return {
         memes,
         handleEdit,
