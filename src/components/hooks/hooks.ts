@@ -12,8 +12,6 @@ export function useMemes() {
         return stored ? JSON.parse(stored) : initialMemes;
     });
     const [selectedMeme, setSelectedMeme] = useState<Memes | null>(null);
-    const [nameError, setNameError] = useState<string>('');
-    const [validationUrl, setValidationUrl] = useState<string>('');
 
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(memes));
@@ -37,22 +35,7 @@ export function useMemes() {
         }
         onClose();
     };
-    const validationName = (value: string): void => {
-        if (value.length < 3) {
-            setNameError('Name must be at least 3 characters.');
-        } else if (value.length > 100) {
-            setNameError('Name must be less than or equal to 100 characters.');
-        } else {
-            setNameError('');
-        }
-    };
-    const chekIsValidationURL = (url: string) => {
-        if (/^https?:\/\/.*\.(jpg|jpeg|png)$/i.test(url)) {
-            setValidationUrl('');
-        } else {
-            setValidationUrl('Invalid URL');
-        }
-    };
+
     const deleteMeme = (IdMeme: number): void => {
         const deleteMeme = memes.filter((meme) => meme.id !== IdMeme);
         setMemes(deleteMeme);
@@ -64,10 +47,6 @@ export function useMemes() {
         handleSave,
         selectedMeme,
         setSelectedMeme,
-        validationName,
-        nameError,
         deleteMeme,
-        chekIsValidationURL,
-        validationUrl,
     };
 }

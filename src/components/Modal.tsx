@@ -8,7 +8,7 @@ import {
     Button,
 } from '@heroui/react';
 import { ModalEditMemeProps } from './types/types';
-import { useMemes } from './hooks/hooks';
+import { useValidation } from './hooks/validation_hooks';
 
 function ModalEditMeme({
     isOpen,
@@ -18,8 +18,7 @@ function ModalEditMeme({
     handleSave,
 }: ModalEditMemeProps) {
     const { validationName, nameError, chekIsValidationURL, validationUrl } =
-        useMemes();
-
+        useValidation();
     return (
         <Modal isOpen={isOpen} onClose={onClose} placement="top">
             <ModalContent>
