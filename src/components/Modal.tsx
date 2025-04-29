@@ -17,7 +17,8 @@ function ModalEditMeme({
     setSelectedMeme,
     handleSave,
 }: ModalEditMemeProps) {
-    const { validationName, nameError } = useMemes();
+    const { validationName, nameError, chekIsValidationURL, validationUrl } =
+        useMemes();
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} placement="top">
@@ -40,11 +41,15 @@ function ModalEditMeme({
                     <Input
                         label="Image URL"
                         value={selectedMeme?.url ?? ''}
-                        onChange={(e) =>
+                        onChange={(e) => {
+                            const value = e.target.value;
                             setSelectedMeme((prev) =>
-                                prev ? { ...prev, url: e.target.value } : prev
-                            )
-                        }
+                                prev ? { ...prev, url: value } : prev
+                            );
+                            chekIsValidationURL(value);
+                        }}
+                        isInvalid={!!validationUrl}
+                        errorMessage={validationUrl}
                     />
                     <Input
                         type="number"

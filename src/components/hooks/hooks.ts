@@ -13,6 +13,7 @@ export function useMemes() {
     });
     const [selectedMeme, setSelectedMeme] = useState<Memes | null>(null);
     const [nameError, setNameError] = useState<string>('');
+    const [validationUrl, setValidationUrl] = useState<string>('');
 
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(memes));
@@ -45,6 +46,13 @@ export function useMemes() {
             setNameError('');
         }
     };
+    const chekIsValidationURL = (url: string) => {
+        if (/^https?:\/\/.*\.(jpg|jpeg|png)$/i.test(url)) {
+            setValidationUrl('');
+        } else {
+            setValidationUrl('Invalid URL');
+        }
+    };
     const deleteMeme = (IdMeme: number): void => {
         const deleteMeme = memes.filter((meme) => meme.id !== IdMeme);
         setMemes(deleteMeme);
@@ -59,5 +67,7 @@ export function useMemes() {
         validationName,
         nameError,
         deleteMeme,
+        chekIsValidationURL,
+        validationUrl,
     };
 }
