@@ -29,6 +29,24 @@
 .card_likes_text {
     padding-right: 5px;
 }
+.del_meme_btn {
+    margin-left: 10px;
+}
+.actions_btns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    gap: 8px;
+    vertical-align: middle;
+}
+.meme_hover:hover {
+    background-color: #71717a;
+    cursor: pointer;
+    user-select: none;
+}
+/* ----------------------------------------------- */
 @media (max-width: 1440px) {
     .card_meme {
         display: flex;
@@ -41,6 +59,11 @@
         width: 100%;
         object-fit: contain;
         height: 300px;
+    }
+}
+@media (max-width: 712px) {
+    .del_meme_btn {
+        /* margin-top: 20px; */
     }
 }
 @media (max-width: 500px) {

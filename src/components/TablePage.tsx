@@ -38,9 +38,12 @@ export default function TablePage() {
                         const isValidImageUrl =
                             /^https?:\/\/.*\.(jpg|jpeg|png)$/i.test(meme.url);
                         return (
-                            <TableRow key={meme.id}>
+                            <TableRow key={meme.id} className="meme_hover">
                                 <TableCell>{meme.id}</TableCell>
-                                <TableCell>{meme.name}</TableCell>
+                                <TableCell>{`${meme.name.slice(
+                                    0,
+                                    20
+                                )} ...`}</TableCell>
                                 <TableCell>
                                     {isValidImageUrl ? (
                                         <Image
@@ -57,17 +60,24 @@ export default function TablePage() {
                                 </TableCell>
                                 <TableCell>{meme.likes}</TableCell>
                                 <TableCell>
-                                    <Button
-                                        onPress={() => {
-                                            handleEdit(meme);
-                                            onOpen();
-                                        }}
-                                    >
-                                        Edit
-                                    </Button>
-                                    <Button onPress={() => deleteMeme(meme.id)}>
-                                        Delete
-                                    </Button>
+                                    <div className="actions_btns">
+                                        <Button
+                                            size="sm"
+                                            onPress={() => {
+                                                handleEdit(meme);
+                                                onOpen();
+                                            }}
+                                        >
+                                            Edit
+                                        </Button>
+                                        <Button
+                                            size="sm"
+                                            className="del_meme_btn"
+                                            onPress={() => deleteMeme(meme.id)}
+                                        >
+                                            Delete
+                                        </Button>
+                                    </div>
                                 </TableCell>
                             </TableRow>
                         );
