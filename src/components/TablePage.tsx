@@ -35,7 +35,7 @@ export default function TablePage() {
                     <TableColumn>ACTIONS</TableColumn>
                 </TableHeader>
                 <TableBody>
-                    {memes.map((meme, index) => {
+                    {memes.map((meme) => {
                         const isValidImageUrl =
                             /^https?:\/\/.*\.(jpg|jpeg|png)$/i.test(meme.url);
                         return (
@@ -44,7 +44,7 @@ export default function TablePage() {
                                 className="meme_hover"
                                 style={{ height: '65px' }}
                             >
-                                <TableCell>{index + 1}</TableCell>
+                                <TableCell>{meme.id}</TableCell>
                                 <TableCell
                                     style={{
                                         overflow: 'hidden',

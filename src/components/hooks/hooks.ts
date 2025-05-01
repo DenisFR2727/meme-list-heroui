@@ -12,7 +12,12 @@ export function useMemes() {
         return stored ? JSON.parse(stored) : initialMemes;
     });
     const [selectedMeme, setSelectedMeme] = useState<Memes | null>(null);
+    let lastId = memes.reduce((max, meme) => Math.max(max, meme.id), 0);
 
+    function generateNextId() {
+        lastId += 1;
+        return lastId;
+    }
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(memes));
     }, [memes]);
@@ -25,7 +30,7 @@ export function useMemes() {
     const handleSave = (): void => {
         if (!selectedMeme) return;
         if (!selectedMeme.id) {
-            const newMeme = { ...selectedMeme, id: Date.now() };
+            const newMeme = { ...selectedMeme, id: generateNextId() };
 
             setMemes((prev) => [...prev, newMeme]);
         } else {
