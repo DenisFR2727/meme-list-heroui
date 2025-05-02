@@ -3,14 +3,17 @@ import { Routes, Route, NavLink } from 'react-router-dom';
 import TablePage from '../components/TablePage';
 import ListPage from '../components/ListPage';
 import { AcmeLogo } from './icons';
+import { useTranslation } from 'react-i18next';
+import SelectLanguage from '../components/language/Select';
 
 export default function App() {
+    const { t } = useTranslation();
     return (
         <>
             <Navbar>
                 <NavbarBrand>
                     <AcmeLogo />
-                    <p className="font-bold text-inherit">MEME</p>
+                    <p className="font-bold text-inherit">{t('MEMES')}</p>
                 </NavbarBrand>
                 <NavbarContent className="sm:flex gap-4" justify="center">
                     <NavbarItem>
@@ -22,7 +25,7 @@ export default function App() {
                                     : 'text-white hover:text-blue-300'
                             }
                         >
-                            TablePage
+                            {t('Table of memes')}
                         </NavLink>
                     </NavbarItem>
                     <NavbarItem isActive>
@@ -34,8 +37,11 @@ export default function App() {
                                     : 'text-white hover:text-blue-300'
                             }
                         >
-                            ListPage
+                            {t('List of memes')}
                         </NavLink>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <SelectLanguage />
                     </NavbarItem>
                 </NavbarContent>
             </Navbar>

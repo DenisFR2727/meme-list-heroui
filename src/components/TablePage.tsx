@@ -12,8 +12,10 @@ import {
 } from '@heroui/react';
 import { useMemes } from './hooks/hooks';
 import ModalEditMeme from './Modal';
+import { useTranslation } from 'react-i18next';
 
 export default function TablePage() {
+    const { t } = useTranslation();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const {
         memes,
@@ -29,10 +31,10 @@ export default function TablePage() {
             <Table aria-label="Example static collection table">
                 <TableHeader>
                     <TableColumn>ID</TableColumn>
-                    <TableColumn>NAME</TableColumn>
-                    <TableColumn>IMAGE</TableColumn>
-                    <TableColumn>LIKES</TableColumn>
-                    <TableColumn>ACTIONS</TableColumn>
+                    <TableColumn>{t('NAME')}</TableColumn>
+                    <TableColumn>{t('IMAGE')}</TableColumn>
+                    <TableColumn>{t('LIKES')}</TableColumn>
+                    <TableColumn>{t('ACTIONS')}</TableColumn>
                 </TableHeader>
                 <TableBody>
                     {memes.map((meme) => {
@@ -80,14 +82,14 @@ export default function TablePage() {
                                                 onOpen();
                                             }}
                                         >
-                                            Edit
+                                            {t('Edit')}
                                         </Button>
                                         <Button
                                             size="sm"
                                             className="del_meme_btn"
                                             onPress={() => deleteMeme(meme.id)}
                                         >
-                                            Delete
+                                            {t('Delete')}
                                         </Button>
                                         <Button
                                             size="sm"
@@ -102,7 +104,7 @@ export default function TablePage() {
                                                 onOpen();
                                             }}
                                         >
-                                            Add
+                                            {t('Add')}
                                         </Button>
                                     </div>
                                 </TableCell>

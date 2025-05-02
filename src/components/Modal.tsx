@@ -9,6 +9,7 @@ import {
 } from '@heroui/react';
 import { ModalEditMemeProps } from './types/types';
 import { useValidation } from './hooks/validation_hooks';
+import { useTranslation } from 'react-i18next';
 
 function ModalEditMeme({
     isOpen,
@@ -17,15 +18,16 @@ function ModalEditMeme({
     setSelectedMeme,
     handleSave,
 }: ModalEditMemeProps) {
+    const { t } = useTranslation();
     const { validationName, nameError, chekIsValidationURL, validationUrl } =
         useValidation();
     return (
         <Modal isOpen={isOpen} onClose={onClose} placement="top">
             <ModalContent>
-                <ModalHeader>Edit Meme</ModalHeader>
+                <ModalHeader>{t('Edit Meme')}</ModalHeader>
                 <ModalBody>
                     <Input
-                        label="Name"
+                        label={t('NAME')}
                         value={selectedMeme?.name ?? ''}
                         onChange={(e) => {
                             const value = e.target.value;
@@ -38,7 +40,7 @@ function ModalEditMeme({
                         errorMessage={nameError}
                     />
                     <Input
-                        label="Image URL"
+                        label={t('Image URL')}
                         value={selectedMeme?.url ?? ''}
                         onChange={(e) => {
                             const value = e.target.value;
@@ -52,7 +54,7 @@ function ModalEditMeme({
                     />
                     <Input
                         type="number"
-                        label="Likes"
+                        label={t('LIKES')}
                         min={0}
                         max={99}
                         value={selectedMeme?.likes?.toString() ?? '0'}
@@ -70,7 +72,7 @@ function ModalEditMeme({
                 </ModalBody>
                 <ModalFooter>
                     <Button onPress={onClose} variant="light">
-                        Cancel
+                        {t('Cancel')}
                     </Button>
                     <Button
                         onPress={() => {
@@ -81,7 +83,7 @@ function ModalEditMeme({
                         }}
                         color="primary"
                     >
-                        Save
+                        {t('Save')}
                     </Button>
                 </ModalFooter>
             </ModalContent>
