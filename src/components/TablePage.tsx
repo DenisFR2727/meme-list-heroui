@@ -10,9 +10,14 @@ import {
     useDisclosure,
     Link,
 } from '@heroui/react';
+import { FiEdit } from 'react-icons/fi';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { MdOutlineAddPhotoAlternate } from 'react-icons/md';
 import { useMemes } from './hooks/hooks';
 import ModalEditMeme from './Modal';
 import { useTranslation } from 'react-i18next';
+import { useMediaQuery } from 'react-responsive';
+import './style.css';
 
 export default function TablePage() {
     const { t } = useTranslation();
@@ -25,7 +30,8 @@ export default function TablePage() {
         handleSave,
         deleteMeme,
     } = useMemes();
-
+    const isMobile = useMediaQuery({ maxWidth: 768 });
+    const actionButtons = `action-btn ${isMobile ? 'mobile' : ''}`;
     return (
         <div>
             <Table aria-label="Example static collection table">
@@ -76,24 +82,33 @@ export default function TablePage() {
                                 <TableCell>
                                     <div className="actions_btns">
                                         <Button
+                                            className={actionButtons}
                                             size="sm"
                                             onPress={() => {
                                                 handleEdit(meme);
                                                 onOpen();
                                             }}
                                         >
-                                            {t('Edit')}
+                                            {!isMobile ? (
+                                                <span>{t('Edit')}</span>
+                                            ) : (
+                                                <FiEdit />
+                                            )}
                                         </Button>
                                         <Button
+                                            className={actionButtons}
                                             size="sm"
-                                            className="del_meme_btn"
                                             onPress={() => deleteMeme(meme.id)}
                                         >
-                                            {t('Delete')}
+                                            {!isMobile ? (
+                                                <span>{t('Delete')}</span>
+                                            ) : (
+                                                <AiOutlineDelete />
+                                            )}
                                         </Button>
                                         <Button
                                             size="sm"
-                                            className="add_meme_btn"
+                                            className={actionButtons}
                                             onPress={() => {
                                                 setSelectedMeme({
                                                     id: 0,
@@ -104,7 +119,11 @@ export default function TablePage() {
                                                 onOpen();
                                             }}
                                         >
-                                            {t('Add')}
+                                            {!isMobile ? (
+                                                <span>{t('Add')}</span>
+                                            ) : (
+                                                <MdOutlineAddPhotoAlternate />
+                                            )}
                                         </Button>
                                     </div>
                                 </TableCell>
