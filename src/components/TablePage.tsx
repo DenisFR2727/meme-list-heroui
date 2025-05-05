@@ -66,10 +66,14 @@ export default function TablePage() {
                                         <Link href={meme.url} target="_blank">
                                             <Image
                                                 alt={meme.url}
-                                                height={45}
+                                                height={isMobile ? 35 : 45}
                                                 src={meme.url}
-                                                width={45}
-                                                style={{ minWidth: '45px' }}
+                                                width={isMobile ? 35 : 45}
+                                                style={
+                                                    isMobile
+                                                        ? { minWidth: '35px' }
+                                                        : { minWidth: '45px' }
+                                                }
                                             />
                                         </Link>
                                     ) : (
