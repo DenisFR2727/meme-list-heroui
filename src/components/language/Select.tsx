@@ -26,8 +26,8 @@ function SelectLanguage() {
         <Select
             variant="flat"
             radius="full"
-            size="md"
-            style={{ width: '90px' }}
+            size="sm"
+            style={{ width: '70px' }}
             placeholder="Language"
             color="secondary"
             selectedKeys={new Set([lang])}
