@@ -21,8 +21,14 @@ function ModalEditMeme({
     const { t } = useTranslation();
     const { validationName, nameError, chekIsValidationURL, validationUrl } =
         useValidation();
+
     return (
-        <Modal isOpen={isOpen} onClose={onClose} placement="top">
+        <Modal
+            className="modal-top"
+            isOpen={isOpen}
+            onClose={onClose}
+            placement="top"
+        >
             <ModalContent>
                 <ModalHeader>{t('Edit Meme')}</ModalHeader>
                 <ModalBody>
