@@ -65,10 +65,6 @@
     }
 }
 @media (max-width: 768px) {
-    .del_meme_btn {
-        /* margin-top: 20px; */
-    }
-
     .action-btn.mobile {
         max-width: 25px;
         min-width: 25px;
