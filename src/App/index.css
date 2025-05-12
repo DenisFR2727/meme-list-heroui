@@ -12,3 +12,8 @@
     padding: 0.3rem 0.6rem;
     white-space: nowrap;
 }
+.main_meme {
+    margin: 0 auto;
+    max-width: 1480px;
+    width: 100%;
+}

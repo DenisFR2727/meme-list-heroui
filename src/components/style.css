@@ -49,6 +49,9 @@
     cursor: pointer;
     user-select: none;
 }
+.modal-top {
+    margin-top: 100px;
+}
 /* ----------------------------------------------- */
 @media (max-width: 1440px) {
     .card_meme {
