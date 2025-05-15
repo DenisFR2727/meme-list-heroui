@@ -21,14 +21,16 @@ export default function App() {
     const navigate = useNavigate();
     const [selectedTab, setSelectedTab] = useState<'table' | 'list'>('table');
 
+    const isActiveClass = ({ isActive }: { isActive: boolean }) =>
+        !isActive ? 'page-default' : 'page-active';
     return (
         <>
             <Navbar>
-                <NavbarBrand>
-                    <AcmeLogo />
-                    <p className="font-bold text-inherit">{t('MEMES')}</p>
-                </NavbarBrand>
                 <NavbarContent className="sm:flex gap-4" justify="center">
+                    <NavbarBrand>
+                        <AcmeLogo />
+                        <p className="font-bold text-inherit">{t('MEMES')}</p>
+                    </NavbarBrand>
                     {isMobile ? (
                         <Tabs
                             variant="light"
@@ -48,11 +50,7 @@ export default function App() {
                             <NavbarItem>
                                 <NavLink
                                     to="/table-page"
-                                    className={({ isActive }) =>
-                                        isActive
-                                            ? 'text-blue-400 font-semibold'
-                                            : 'text-white hover:text-blue-300'
-                                    }
+                                    className={isActiveClass}
                                 >
                                     <span>{t('Table of memes')}</span>
                                 </NavLink>
@@ -60,11 +58,7 @@ export default function App() {
                             <NavbarItem isActive>
                                 <NavLink
                                     to="/list-page"
-                                    className={({ isActive }) =>
-                                        isActive
-                                            ? 'text-blue-400 font-semibold'
-                                            : 'text-white hover:text-blue-300'
-                                    }
+                                    className={isActiveClass}
                                 >
                                     <span>{t('List of memes')}</span>
                                 </NavLink>

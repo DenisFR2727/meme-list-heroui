@@ -17,3 +17,25 @@
     max-width: 1480px;
     width: 100%;
 }
+
+header {
+    background-color: #71717a;
+    max-width: 1480px !important;
+    /* color: #ffffff; */
+}
+header ul {
+    width: 100%;
+}
+.page-default {
+    color: #ffffff !important;
+}
+.page-active {
+    color: #ff4ecd !important;
+}
+.menu-page {
+    color: red !important;
+}
+.inline-flex {
+    background: #ffffff;
+    border-radius: 5px;
+}
