@@ -33,6 +33,7 @@ export default function App() {
                     </NavbarBrand>
                     {isMobile ? (
                         <Tabs
+                            className="tab-menu"
                             variant="light"
                             size="sm"
                             color="secondary"
