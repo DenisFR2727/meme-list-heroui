@@ -31,7 +31,7 @@ function ModalEditMeme({
             placement="top"
             scrollBehavior="inside"
         >
-            <ModalContent className="max-h-[80vh] overflow-y-auto">
+            <ModalContent className="max-h-[100vh] overflow-y-auto">
                 <ModalHeader>
                     {nameModal ? t('Edit Meme') : t('Add meme')}
                 </ModalHeader>
