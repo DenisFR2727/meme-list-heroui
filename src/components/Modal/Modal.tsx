@@ -25,7 +25,7 @@ function ModalEditMeme({
 
     return (
         <Modal
-            className="modal-top max-h-[90vh] overflow-y-auto"
+            className="modal-top max-h-[100vh] overflow-y-auto"
             isOpen={isOpen}
             onClose={onClose}
             placement="top"
