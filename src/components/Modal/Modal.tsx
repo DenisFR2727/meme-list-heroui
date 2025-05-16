@@ -46,6 +46,12 @@ function ModalEditMeme({
                             );
                             validationName(value);
                         }}
+                        onFocus={(e) => {
+                            e.target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center',
+                            });
+                        }}
                         isInvalid={!!nameError}
                         errorMessage={nameError}
                     />
@@ -58,6 +64,12 @@ function ModalEditMeme({
                                 prev ? { ...prev, url: value } : prev
                             );
                             chekIsValidationURL(value);
+                        }}
+                        onFocus={(e) => {
+                            e.target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center',
+                            });
                         }}
                         isInvalid={!!validationUrl}
                         errorMessage={validationUrl}
@@ -78,6 +90,12 @@ function ModalEditMeme({
                                     : prev
                             )
                         }
+                        onFocus={(e) => {
+                            e.target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center',
+                            });
+                        }}
                     />
                 </ModalBody>
                 <ModalFooter>
