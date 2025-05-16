@@ -25,10 +25,11 @@ function ModalEditMeme({
 
     return (
         <Modal
-            className="modal-top"
+            className="modal-top max-h-[90vh] overflow-y-auto"
             isOpen={isOpen}
             onClose={onClose}
-            placement="center"
+            placement="top"
+            scrollBehavior="inside"
         >
             <ModalContent>
                 <ModalHeader>
