@@ -10,7 +10,6 @@ import {
 import { ModalEditMemeProps } from '../types/types';
 import { useValidation } from '../hooks/validation_hooks';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
 
 function ModalEditMeme({
     isOpen,
@@ -23,15 +22,13 @@ function ModalEditMeme({
     const { t } = useTranslation();
     const { validationName, nameError, chekIsValidationURL, validationUrl } =
         useValidation();
-    useEffect(() => {
-        console.log(nameModal);
-    }, [nameModal]);
+
     return (
         <Modal
             className="modal-top"
             isOpen={isOpen}
             onClose={onClose}
-            placement="top"
+            placement="center"
         >
             <ModalContent>
                 <ModalHeader>
