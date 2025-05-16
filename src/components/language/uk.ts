@@ -10,7 +10,7 @@ export const uk = {
         IMAGE: 'Зображення',
         LIKES: 'Лайки',
         ACTIONS: 'Діяльність',
-        'Edit Meme': 'Редагувати меми',
+        'Edit Meme': 'Редагувати мем',
         'Image URL': 'URL зображення',
         Cancel: 'Скасувати',
         Save: 'Зберігти',
