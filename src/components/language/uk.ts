@@ -14,5 +14,6 @@ export const uk = {
         'Image URL': 'URL зображення',
         Cancel: 'Скасувати',
         Save: 'Зберігти',
+        'Add meme': 'Додати мем',
     },
 };

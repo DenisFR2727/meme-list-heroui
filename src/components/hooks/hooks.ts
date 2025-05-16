@@ -11,6 +11,7 @@ export function useMemes() {
         const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
         return stored ? JSON.parse(stored) : initialMemes;
     });
+    const [nameModal, setNameModal] = useState<boolean>(false);
     const [selectedMeme, setSelectedMeme] = useState<Memes | null>(null);
     let lastId = memes.reduce((max, meme) => Math.max(max, meme.id), 0);
 
@@ -53,5 +54,7 @@ export function useMemes() {
         selectedMeme,
         setSelectedMeme,
         deleteMeme,
+        nameModal,
+        setNameModal,
     };
 }

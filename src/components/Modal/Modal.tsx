@@ -7,9 +7,10 @@ import {
     Modal,
     Button,
 } from '@heroui/react';
-import { ModalEditMemeProps } from './types/types';
-import { useValidation } from './hooks/validation_hooks';
+import { ModalEditMemeProps } from '../types/types';
+import { useValidation } from '../hooks/validation_hooks';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 function ModalEditMeme({
     isOpen,
@@ -17,11 +18,14 @@ function ModalEditMeme({
     selectedMeme,
     setSelectedMeme,
     handleSave,
+    nameModal,
 }: ModalEditMemeProps) {
     const { t } = useTranslation();
     const { validationName, nameError, chekIsValidationURL, validationUrl } =
         useValidation();
-
+    useEffect(() => {
+        console.log(nameModal);
+    }, [nameModal]);
     return (
         <Modal
             className="modal-top"
@@ -30,7 +34,9 @@ function ModalEditMeme({
             placement="top"
         >
             <ModalContent>
-                <ModalHeader>{t('Edit Meme')}</ModalHeader>
+                <ModalHeader>
+                    {nameModal ? t('Edit Meme') : t('Add meme')}
+                </ModalHeader>
                 <ModalBody>
                     <Input
                         label={t('NAME')}

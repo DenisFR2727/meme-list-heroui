@@ -8,20 +8,20 @@ import {
     Image,
     Button,
     useDisclosure,
-    Link,
 } from '@heroui/react';
 import { FiEdit } from 'react-icons/fi';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { MdOutlineAddPhotoAlternate } from 'react-icons/md';
 import { useMemes } from './hooks/hooks';
-import ModalEditMeme from './Modal';
+import ModalEditMeme from './Modal/Modal';
 import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from 'react-responsive';
 import './style.css';
+import InfoImageModal from './Modal/Info';
+import { useState } from 'react';
+import { Memes } from '../data/type';
 
 export default function TablePage() {
-    const { t } = useTranslation();
-    const { isOpen, onOpen, onClose } = useDisclosure();
     const {
         memes,
         handleEdit,
@@ -29,9 +29,24 @@ export default function TablePage() {
         setSelectedMeme,
         handleSave,
         deleteMeme,
+        nameModal,
+        setNameModal,
     } = useMemes();
+    const { t } = useTranslation();
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [selectedInfoMeme, setSelectedInfoMeme] = useState<Memes | null>(
+        null
+    );
+    const [openInfoModal, setOpenInfoModal] = useState<boolean>(false);
+
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const actionButtons = `action-btn ${isMobile ? 'mobile' : ''}`;
+
+    const handleImageClick = (meme: Memes) => {
+        setSelectedInfoMeme(meme);
+        setOpenInfoModal(true);
+    };
+
     return (
         <div>
             <Table aria-label="Example static collection table">
@@ -63,19 +78,20 @@ export default function TablePage() {
                                     .slice(0, 10)}`}</TableCell>
                                 <TableCell>
                                     {isValidImageUrl ? (
-                                        <Link href={meme.url} target="_blank">
-                                            <Image
-                                                alt={meme.url}
-                                                height={isMobile ? 35 : 45}
-                                                src={meme.url}
-                                                width={isMobile ? 35 : 45}
-                                                style={
-                                                    isMobile
-                                                        ? { minWidth: '35px' }
-                                                        : { minWidth: '45px' }
-                                                }
-                                            />
-                                        </Link>
+                                        <Image
+                                            onClick={() => {
+                                                handleImageClick(meme);
+                                            }}
+                                            alt={meme.url}
+                                            height={isMobile ? 35 : 45}
+                                            src={meme.url}
+                                            width={isMobile ? 35 : 45}
+                                            style={
+                                                isMobile
+                                                    ? { minWidth: '35px' }
+                                                    : { minWidth: '45px' }
+                                            }
+                                        />
                                     ) : (
                                         <span style={{ color: 'red' }}>
                                             Invalid URL
@@ -90,6 +106,7 @@ export default function TablePage() {
                                             size="sm"
                                             onPress={() => {
                                                 handleEdit(meme);
+                                                setNameModal(true);
                                                 onOpen();
                                             }}
                                         >
@@ -120,6 +137,7 @@ export default function TablePage() {
                                                     url: '',
                                                     likes: 0,
                                                 });
+                                                setNameModal(false);
                                                 onOpen();
                                             }}
                                         >
@@ -145,6 +163,12 @@ export default function TablePage() {
                     handleSave();
                     onClose();
                 }}
+                nameModal={nameModal}
+            />
+            <InfoImageModal
+                currentMemeInfo={selectedInfoMeme}
+                isOpen={openInfoModal}
+                onClose={() => setOpenInfoModal(false)}
             />
         </div>
     );

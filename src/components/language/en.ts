@@ -14,5 +14,6 @@ export const en = {
         'Image URL': 'Image URL',
         Cancel: 'Cancel',
         Save: 'Save',
+        'Add meme': 'Add meme',
     },
 };

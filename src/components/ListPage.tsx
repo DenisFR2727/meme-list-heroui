@@ -1,6 +1,7 @@
 import { Card, CardBody, CardFooter, Image, Link } from '@heroui/react';
 import { useMemes } from './hooks/hooks';
 import './style.css';
+
 export default function App() {
     const { memes } = useMemes();
 

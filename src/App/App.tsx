@@ -20,9 +20,9 @@ export default function App() {
     const isMobile = useMediaQuery({ maxWidth: 468 });
     const navigate = useNavigate();
     const [selectedTab, setSelectedTab] = useState<'table' | 'list'>('table');
-
     const isActiveClass = ({ isActive }: { isActive: boolean }) =>
         !isActive ? 'page-default' : 'page-active';
+
     return (
         <>
             <Navbar>

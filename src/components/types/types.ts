@@ -7,4 +7,5 @@ export type ModalEditMemeProps = {
     selectedMeme: Memes | null;
     setSelectedMeme: Dispatch<SetStateAction<Memes | null>>;
     handleSave: () => void | Promise<void>;
+    nameModal: boolean;
 };
