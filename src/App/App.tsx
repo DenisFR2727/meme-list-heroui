@@ -73,6 +73,7 @@ export default function App() {
             </Navbar>
             <main className="main_meme">
                 <Routes>
+                    <Route path="/" element={<TablePage />} />
                     <Route path="/table-page" element={<TablePage />} />
                     <Route path="/list-page" element={<ListPage />} />
                 </Routes>

@@ -32,7 +32,7 @@ function InfoImageModal({
                     {(onClose) => (
                         <>
                             <ModalHeader className="flex flex-col gap-1">
-                                Name meme
+                                {currentMemeInfo?.name}
                             </ModalHeader>
                             <ModalBody className="image-modal">
                                 <Image
